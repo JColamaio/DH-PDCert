@@ -1,0 +1,16 @@
+/home/jonathan/work/DH/reservenow-backend/src/main/java/com/reservenow/dto/RegisterRequest.java
+/home/jonathan/work/DH/reservenow-backend/src/main/java/com/reservenow/model/User.java
+/home/jonathan/work/DH/reservenow-backend/src/main/java/com/reservenow/repository/HabitacionRepository.java
+/home/jonathan/work/DH/reservenow-backend/src/main/java/com/reservenow/config/AppConfig.java
+/home/jonathan/work/DH/reservenow-backend/src/main/java/com/reservenow/controller/HabitacionController.java
+/home/jonathan/work/DH/reservenow-backend/src/main/java/com/reservenow/ReserveNowApplication.java
+/home/jonathan/work/DH/reservenow-backend/src/main/java/com/reservenow/config/SecurityConfig.java
+/home/jonathan/work/DH/reservenow-backend/src/main/java/com/reservenow/controller/UserController.java
+/home/jonathan/work/DH/reservenow-backend/src/main/java/com/reservenow/dto/HabitacionDTO.java
+/home/jonathan/work/DH/reservenow-backend/src/main/java/com/reservenow/model/Role.java
+/home/jonathan/work/DH/reservenow-backend/src/main/java/com/reservenow/repository/ImagenRepository.java
+/home/jonathan/work/DH/reservenow-backend/src/main/java/com/reservenow/dto/LoginRequest.java
+/home/jonathan/work/DH/reservenow-backend/src/main/java/com/reservenow/repository/UserRepository.java
+/home/jonathan/work/DH/reservenow-backend/src/main/java/com/reservenow/model/Imagen.java
+/home/jonathan/work/DH/reservenow-backend/src/main/java/com/reservenow/model/Habitacion.java
+/home/jonathan/work/DH/reservenow-backend/src/main/java/com/reservenow/services/HabitacionService.java
