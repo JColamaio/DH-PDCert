@@ -8,8 +8,13 @@ import com.reservenow.services.HabitacionService;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import java.util.Optional;
+
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -37,4 +42,36 @@ public class HabitacionController {
     public ResponseEntity<List<Habitacion>> listarTodas() {
         return ResponseEntity.ok(habitacionService.listarTodas());
     }
+@PutMapping("/{id}")
+public ResponseEntity<?> actualizarHabitacion(@PathVariable Long id, @Valid @RequestBody HabitacionDTO dto) {
+    Optional<Habitacion> optional = habitacionService.obtenerPorId(id);
+    if (optional.isEmpty()) {
+        return ResponseEntity.notFound().build();
+    }
+
+    Habitacion actualizada = habitacionService.actualizarDesdeDTO(optional.get(), dto);
+    return ResponseEntity.ok(actualizada);
+}
+
+@DeleteMapping("/{id}")
+public ResponseEntity<?> eliminarHabitacion(@PathVariable Long id) {
+    if (!habitacionService.existePorId(id)) {
+        return ResponseEntity.notFound().build();
+    }
+
+    habitacionService.eliminarPorId(id);
+    return ResponseEntity.ok("Habitación eliminada correctamente.");
+}
+@GetMapping("/{id}")
+public ResponseEntity<Habitacion> obtenerPorId(@PathVariable Long id) {
+    return habitacionService.obtenerPorId(id)
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.notFound().build());
+}
+@GetMapping("/aleatorias")
+public ResponseEntity<List<Habitacion>> listarAleatorias() {
+    return ResponseEntity.ok(habitacionService.listarAleatorias(10));
+}
+
+
 }
