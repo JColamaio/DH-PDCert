@@ -24,11 +24,6 @@
 
     <dependencies>
 
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-validation</artifactId>
-</dependency>
-
 
 <dependency>
     <groupId>com.fasterxml.jackson.core</groupId>
@@ -40,18 +35,17 @@
     <artifactId>jackson-annotations</artifactId>
     <version>2.15.3</version>
 </dependency>
+<dependency>
+    <groupId>jakarta.validation</groupId>
+    <artifactId>jakarta.validation-api</artifactId>
+    <version>3.0.2</version>
+</dependency>
 
 
 <dependency>
     <groupId>com.fasterxml.jackson.module</groupId>
     <artifactId>jackson-module-jakarta-xmlbind-annotations</artifactId>
     <version>2.15.3</version>
-</dependency>
-
-<!-- Para @Valid funcionando bien con Spring Boot -->
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-validation</artifactId>
 </dependency>
 
 <!-- Para PasswordEncoder y BCrypt -->
@@ -73,11 +67,13 @@
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
+        
+   <dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.30</version> <!-- o la más reciente -->
+    <scope>provided</scope>
+</dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

@@ -1,4 +1,4 @@
-package com.reservenow.service;
+package com.reservenow.services;
 
 import com.reservenow.dto.HabitacionDTO;
 import com.reservenow.model.Habitacion;

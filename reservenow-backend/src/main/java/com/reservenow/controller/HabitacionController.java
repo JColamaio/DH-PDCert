@@ -1,11 +1,14 @@
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+package com.reservenow.controller;
+
 import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 import com.reservenow.services.HabitacionService;
+
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+
 import com.reservenow.dto.HabitacionDTO;
 import com.reservenow.model.Habitacion;
 

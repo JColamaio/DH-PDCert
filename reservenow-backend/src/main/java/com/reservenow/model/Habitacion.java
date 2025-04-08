@@ -6,11 +6,11 @@ import lombok.*;
 
 import java.util.List;
 
-@Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Habitacion {
 
     @Id
@@ -21,5 +21,7 @@ public class Habitacion {
     private String descripcion;
     private Double precioPorNoche;
     private Boolean disponible;
-
+    @OneToMany(mappedBy = "habitacion", cascade = CascadeType.ALL, orphanRemoval = true)
+@JsonManagedReference
+private List<Imagen> imagenes;
 }
