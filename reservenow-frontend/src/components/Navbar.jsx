@@ -1,18 +1,31 @@
 import { Link } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
-function Navbar() {
+const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4">
-      <Link className="navbar-brand" to="/">ReserveNow</Link>
-      <div className="collapse navbar-collapse">
-        <ul className="navbar-nav ms-auto">
-          <li className="nav-item">
-            <Link className="nav-link" to="/register">Registrarse</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/crear-habitacion">Crear Habitación</Link>
-          </li>
-        </ul>
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div className="container-fluid">
+        {/* Logo + Lema */}
+        <Link className="navbar-brand d-flex align-items-center" to="/">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/869/869636.png"
+            alt="Logo"
+            width="30"
+            height="30"
+            className="d-inline-block align-text-top me-2"
+          />
+          <span>ReserveNow · ¡Tu lugar, tu momento!</span>
+        </Link>
+
+        {/* Botones */}
+        <div className="ms-auto">
+          <button className="btn btn-outline-light me-2" disabled>
+            Crear cuenta
+          </button>
+          <button className="btn btn-outline-light" disabled>
+            Iniciar sesión
+          </button>
+        </div>
       </div>
     </nav>
   )
