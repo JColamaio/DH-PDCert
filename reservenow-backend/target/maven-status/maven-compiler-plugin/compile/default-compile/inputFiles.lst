@@ -4,6 +4,7 @@
 /home/jonathan/work/DH/DH-PDCert/reservenow-backend/src/main/java/com/reservenow/controller/HabitacionController.java
 /home/jonathan/work/DH/DH-PDCert/reservenow-backend/src/main/java/com/reservenow/model/Imagen.java
 /home/jonathan/work/DH/DH-PDCert/reservenow-backend/src/main/java/com/reservenow/dto/RegisterRequest.java
+/home/jonathan/work/DH/DH-PDCert/reservenow-backend/src/main/java/com/reservenow/config/CorsConfig.java
 /home/jonathan/work/DH/DH-PDCert/reservenow-backend/src/main/java/com/reservenow/ReserveNowApplication.java
 /home/jonathan/work/DH/DH-PDCert/reservenow-backend/src/main/java/com/reservenow/model/Role.java
 /home/jonathan/work/DH/DH-PDCert/reservenow-backend/src/main/java/com/reservenow/model/User.java
