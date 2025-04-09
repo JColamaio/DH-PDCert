@@ -1,31 +1,24 @@
-import { Link } from 'react-router-dom'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import { NavLink } from 'react-router-dom'
 
-const Navbar = () => {
+function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div className="container-fluid">
-        {/* Logo + Lema */}
-        <Link className="navbar-brand d-flex align-items-center" to="/">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/869/869636.png"
-            alt="Logo"
-            width="30"
-            height="30"
-            className="d-inline-block align-text-top me-2"
-          />
-          <span>ReserveNow · ¡Tu lugar, tu momento!</span>
-        </Link>
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+      <NavLink className="navbar-brand" to="/">ReserveNow</NavLink>
 
-        {/* Botones */}
-        <div className="ms-auto">
-          <button className="btn btn-outline-light me-2" disabled>
-            Crear cuenta
-          </button>
-          <button className="btn btn-outline-light" disabled>
-            Iniciar sesión
-          </button>
-        </div>
+      <div className="collapse navbar-collapse">
+        <ul className="navbar-nav ms-auto">
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/">Habitaciones</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/register">Registro</NavLink>
+          </li>
+
+          {/* 👇 AGREGÁ ESTO */}
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/crear-habitacion">Crear Habitación</NavLink>
+          </li>
+        </ul>
       </div>
     </nav>
   )

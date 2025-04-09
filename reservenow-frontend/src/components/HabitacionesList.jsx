@@ -1,7 +1,7 @@
 // src/components/HabitacionesList.jsx
 import React, { useEffect, useState } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import './HabitacionesList.css';
 const HabitacionesList = () => {
   const [habitaciones, setHabitaciones] = useState([]);
   const [error, setError] = useState(null);
