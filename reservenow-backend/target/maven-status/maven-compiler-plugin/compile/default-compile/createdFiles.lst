@@ -1,3 +1,4 @@
+com/reservenow/config/CorsConfig.class
 com/reservenow/config/AppConfig.class
 com/reservenow/repository/UserRepository.class
 com/reservenow/model/Habitacion$HabitacionBuilder.class
