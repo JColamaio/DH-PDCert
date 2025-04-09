@@ -14,10 +14,9 @@ function Navbar() {
             <NavLink className="nav-link" to="/register">Registro</NavLink>
           </li>
 
-          {/* 👇 AGREGÁ ESTO */}
           <li className="nav-item">
-            <NavLink className="nav-link" to="/crear-habitacion">Crear Habitación</NavLink>
-          </li>
+  <NavLink className="nav-link" to="/administracion">Administración</NavLink>
+</li>
         </ul>
       </div>
     </nav>
