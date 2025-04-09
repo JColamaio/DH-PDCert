@@ -2,7 +2,9 @@ import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import RegistroUsuario from './pages/RegistroUsuario'
 import Habitaciones from './pages/Habitaciones'
-import CrearHabitacion from './pages/CrearHabitacion'
+import CrearHabitacion from './components/CrearHabitacion'
+import DetalleHabitacion from './components/HabitacionDetalle'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -13,8 +15,10 @@ function App() {
           <Route path="/" element={<Habitaciones />} />
           <Route path="/register" element={<RegistroUsuario />} />
           <Route path="/crear-habitacion" element={<CrearHabitacion />} />
+          <Route path="/habitaciones/:id" element={<DetalleHabitacion />} />
         </Routes>
       </div>
+      <Footer />
     </>
   )
 }
