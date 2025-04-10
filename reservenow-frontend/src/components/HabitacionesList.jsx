@@ -4,9 +4,11 @@ import './HabitacionesList.css'
 
 const HabitacionesList = () => {
   const [habitaciones, setHabitaciones] = useState([])
+  const [categorias, setCategorias] = useState([])
   const [error, setError] = useState(null)
   const [paginaActual, setPaginaActual] = useState(1)
   const [busqueda, setBusqueda] = useState('')
+  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null)
   const habitacionesPorPagina = 10
 
   useEffect(() => {
@@ -17,17 +19,24 @@ const HabitacionesList = () => {
       })
       .then(data => setHabitaciones(data))
       .catch(err => setError(err.message))
+
+    fetch("http://localhost:8080/api/categorias")
+      .then(res => {
+        if (!res.ok) throw new Error("Error al obtener categorías")
+        return res.json()
+      })
+      .then(data => setCategorias(data))
+      .catch(err => setError(err.message))
   }, [])
 
   const habitacionesFiltradas = habitaciones.filter(h =>
-    h.nombre.toLowerCase().includes(busqueda.toLowerCase())
+    h.nombre.toLowerCase().includes(busqueda.toLowerCase()) &&
+    (!categoriaSeleccionada || h.categoria?.nombre === categoriaSeleccionada)
   )
 
-  // Calcular índice de inicio y fin en base a filtradas
   const inicio = (paginaActual - 1) * habitacionesPorPagina
   const fin = inicio + habitacionesPorPagina
   const habitacionesPaginadas = habitacionesFiltradas.slice(inicio, fin)
-
   const totalPaginas = Math.ceil(habitacionesFiltradas.length / habitacionesPorPagina)
 
   const cambiarPagina = (nuevaPagina) => {
@@ -36,17 +45,16 @@ const HabitacionesList = () => {
     }
   }
 
-  // Resetear a página 1 cuando cambie la busqueda
   useEffect(() => {
     setPaginaActual(1)
-  }, [busqueda])
+  }, [busqueda, categoriaSeleccionada])
 
   return (
     <div className="container mt-4">
-      {/* <h2 className="mb-4">Listado de Habitaciones</h2> */}
       {error && <div className="alert alert-danger">{error}</div>}
 
-      <div className="mb-4">
+      {/* Buscador */}
+      <div className="mb-3">
         <input
           type="text"
           className="form-control"
@@ -56,25 +64,46 @@ const HabitacionesList = () => {
         />
       </div>
 
+      {/* Filtro por categoría */}
+      <div className="mb-4">
+        <button
+          className={`btn me-2 ${!categoriaSeleccionada ? 'btn-primary' : 'btn-outline-primary'}`}
+          onClick={() => setCategoriaSeleccionada(null)}
+        >
+          Todas
+        </button>
+        {categorias.map(cat => (
+          <button
+            key={cat.id}
+            className={`btn me-2 ${categoriaSeleccionada === cat.nombre ? 'btn-primary' : 'btn-outline-primary'}`}
+            onClick={() => setCategoriaSeleccionada(cat.nombre)}
+          >
+            {cat.nombre}
+          </button>
+        ))}
+      </div>
+
+      {/* Listado de habitaciones */}
       <div className="row">
         {habitacionesPaginadas.map((hab) => (
           <div className="col-md-4 mb-4" key={hab.id}>
             <div className="card h-100 shadow-sm">
-            {hab.imagenes?.length > 0 && (
-  <img
-    src={hab.imagenes[0].url}
-    className="card-img-top"
-    alt={`Habitación ${hab.nombre}`}
-    style={{ height: '200px', objectFit: 'cover' }}
-  />
-)}
+              {hab.imagenes?.length > 0 && (
+                <img
+                  src={hab.imagenes[0].url}
+                  className="card-img-top"
+                  alt={`Habitación ${hab.nombre}`}
+                  style={{ height: '200px', objectFit: 'cover' }}
+                />
+              )}
               <div className="card-body d-flex flex-column">
                 <h5 className="card-title">{hab.nombre}</h5>
                 <p className="card-text">{hab.descripcion}</p>
                 <p className="card-text fw-bold mb-2">Precio por noche: ${hab.precioPorNoche}</p>
-                <span className={`badge ${hab.disponible ? 'bg-success' : 'bg-secondary'} mb-3`}>
+                <span className={`badge ${hab.disponible ? 'bg-success' : 'bg-secondary'} mb-2`}>
                   {hab.disponible ? 'Disponible' : 'No disponible'}
                 </span>
+                <span className="badge bg-info text-dark mb-3">{hab.categoria?.nombre}</span>
                 <Link to={`/habitaciones/${hab.id}`} className="btn btn-outline-primary mt-auto">Ver más</Link>
               </div>
             </div>
@@ -82,6 +111,7 @@ const HabitacionesList = () => {
         ))}
       </div>
 
+      {/* Paginación */}
       {totalPaginas > 1 && (
         <div className="d-flex justify-content-center mt-4">
           <button

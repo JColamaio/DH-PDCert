@@ -1,8 +1,10 @@
 package com.reservenow.services;
 
 import com.reservenow.dto.HabitacionDTO;
+import com.reservenow.model.Categoria;
 import com.reservenow.model.Habitacion;
 import com.reservenow.model.Imagen;
+import com.reservenow.repository.CategoriaRepository;
 import com.reservenow.repository.HabitacionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,7 @@ import java.util.Collections;
 public class HabitacionService {
 
     private final HabitacionRepository habitacionRepository;
+private final CategoriaRepository categoriaRepository;
 
     public boolean existePorNombre(String nombre) {
         return habitacionRepository.existsByNombre(nombre);
@@ -37,6 +40,10 @@ public class HabitacionService {
                 .toList();
 
         habitacion.setImagenes(imagenes);
+        Categoria categoria = categoriaRepository.findById(dto.getCategoriaId())
+        .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));
+
+habitacion.setCategoria(categoria);
 
         return habitacionRepository.save(habitacion);
     }

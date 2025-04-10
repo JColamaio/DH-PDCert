@@ -6,6 +6,7 @@ import com.reservenow.model.User;
 import com.reservenow.repository.UserRepository;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,12 +24,19 @@ public class UserController {
         }
 
         User user = User.builder()
-                .name(request.getName())
-                .email(request.getEmail())
-                .role(Role.USER)
-                .build();
+        .name(request.getName())
+        .lastName(request.getLastName())
+        .email(request.getEmail())
+        .password(request.getPassword()) 
+        .role(Role.USER)
+        .build();
+    
 
         userRepository.save(user);
         return ResponseEntity.ok("Usuario registrado correctamente.");
     }
+    @GetMapping("/list")
+public List<User> listarUsuarios() {
+    return userRepository.findAll();
+}
 }

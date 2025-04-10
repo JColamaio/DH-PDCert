@@ -22,6 +22,10 @@ public class Habitacion {
     private Double precioPorNoche;
     private Boolean disponible;
     @OneToMany(mappedBy = "habitacion", cascade = CascadeType.ALL, orphanRemoval = true)
-@JsonManagedReference
-private List<Imagen> imagenes;
+    @JsonManagedReference
+    private List<Imagen> imagenes;
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
+
 }

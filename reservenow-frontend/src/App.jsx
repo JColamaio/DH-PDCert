@@ -7,6 +7,7 @@ import DetalleHabitacion from './components/HabitacionDetalle'
 import Footer from './components/Footer'
 import AdminLayout from './components/AdminLayout'
 import ListaHabitaciones from './components/ListaHabitaciones'
+import ListaUsuarios from './components/ListaUsuarios'
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
           <Route path="/administracion" element={<AdminLayout />}>
             <Route path="crear-habitacion" element={<CrearHabitacion />} />
             <Route path="lista-habitaciones" element={<ListaHabitaciones />} />
+            <Route path="usuarios" element={<ListaUsuarios />} />
+
           </Route>
         </Routes>
 -     </div>

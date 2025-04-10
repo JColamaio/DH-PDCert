@@ -11,15 +11,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .csrf().disable() // solo para pruebas, cuidado en producción
+            .csrf().disable()
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/users/**").permitAll()
-                .requestMatchers("/api/habitaciones/**").permitAll() // <- permitir sin login
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
             )
-            .httpBasic(); // o .formLogin() si tenés un login web
-
+            .formLogin().disable()
+            .httpBasic().disable();
+    
         return http.build();
     }
+    
 }
-

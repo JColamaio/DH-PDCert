@@ -29,6 +29,10 @@ function AdminLayout() {
           <li className="nav-item">
             <Link to="/administracion/lista-habitaciones" className="nav-link text-white">Lista de Habitaciones</Link>
           </li>
+          <li className="nav-item">
+  <Link to="/administracion/usuarios" className="nav-link text-white">Usuarios</Link>
+</li>
+
         </ul>
       </aside>
       <main className="p-4 flex-grow-1 w-100">

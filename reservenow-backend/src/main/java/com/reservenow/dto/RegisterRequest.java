@@ -17,4 +17,7 @@ public class RegisterRequest {
 
     @NotBlank(message = "La contraseña es obligatoria")
     private String password;
+    @NotBlank(message = "El apellido es obligatorio")
+    private String lastName;
+
 }
