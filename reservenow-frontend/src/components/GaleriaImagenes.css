@@ -1,14 +1,34 @@
+/* src/components/GaleriaImagenes.css */
+
+.galeria-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 .galeria-principal {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-  
-  .galeria-miniatura {
-    width: 100%;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-  
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.galeria-miniatura {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  transition: transform 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.galeria-miniatura:hover {
+  transform: scale(1.03);
+}
+
+.btn-link {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #0d6efd;
+}

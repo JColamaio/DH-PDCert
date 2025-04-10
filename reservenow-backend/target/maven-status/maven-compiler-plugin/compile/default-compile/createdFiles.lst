@@ -17,5 +17,6 @@ com/reservenow/model/Habitacion.class
 com/reservenow/dto/HabitacionDTO.class
 com/reservenow/dto/RegisterRequest.class
 com/reservenow/model/Imagen.class
+com/reservenow/config/DataSeeder.class
 com/reservenow/model/Imagen$ImagenBuilder.class
 com/reservenow/model/User$UserBuilder.class

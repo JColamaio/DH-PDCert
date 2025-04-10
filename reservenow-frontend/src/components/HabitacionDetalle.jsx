@@ -1,8 +1,9 @@
+// src/components/HabitacionDetalle.jsx
 import { useParams, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
-import GaleriaImagenes from '../components/GaleriaImagenes'
+import GaleriaImagenes from './GaleriaImagenes'
 
-function DetalleHabitacion() {
+function HabitacionDetalle() {
   const { id } = useParams()
   const navigate = useNavigate()
   const [habitacion, setHabitacion] = useState(null)
@@ -41,19 +42,12 @@ function DetalleHabitacion() {
       {/* Body */}
       <div className="container mt-4">
         <p className="lead">{habitacion.descripcion}</p>
-        <GaleriaImagenes imagenes={habitacion.imagenes} />
 
         {/* Galería de imágenes */}
-        <div className="row">
-          {habitacion.imagenes?.map((url, index) => (
-            <div className="col-md-4 mb-3" key={index}>
-              <img src={url} alt={`Imagen ${index + 1}`} className="img-fluid rounded shadow-sm" />
-            </div>
-          ))}
-        </div>
+        <GaleriaImagenes imagenes={habitacion.imagenes.map(img => img.url)} />
       </div>
     </div>
   )
 }
 
-export default DetalleHabitacion
+export default HabitacionDetalle

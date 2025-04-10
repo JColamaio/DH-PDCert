@@ -11,6 +11,7 @@
 /home/jonathan/work/DH/DH-PDCert/reservenow-backend/src/main/java/com/reservenow/model/User.java
 /home/jonathan/work/DH/DH-PDCert/reservenow-backend/src/main/java/com/reservenow/config/SecurityConfig.java
 /home/jonathan/work/DH/DH-PDCert/reservenow-backend/src/main/java/com/reservenow/services/HabitacionService.java
+/home/jonathan/work/DH/DH-PDCert/reservenow-backend/src/main/java/com/reservenow/config/DataSeeder.java
 /home/jonathan/work/DH/DH-PDCert/reservenow-backend/src/main/java/com/reservenow/dto/LoginRequest.java
 /home/jonathan/work/DH/DH-PDCert/reservenow-backend/src/main/java/com/reservenow/controller/UserController.java
 /home/jonathan/work/DH/DH-PDCert/reservenow-backend/src/main/java/com/reservenow/repository/ImagenRepository.java

@@ -81,6 +81,23 @@ User: sa
 
 Password: (vacío)
 
+🎨 Identidad Visual y Paleta de Colores
+Paleta de colores base:
+
+Azul primario: #0d6efd
+
+Azul oscuro: #1e2a38
+
+Gris claro: #f8f9fa
+
+Blanco: #ffffff
+
+Gris texto: #333333
+
+Tipografía: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+
+Logo de marca: ReserveNow (texto con estilo) — se reemplazará en Sprint 2 por diseño gráfico definitivo.
+
 ✅ Estado al cierre del Sprint 1
 Requisito	Estado
 Backend funcional	✅
