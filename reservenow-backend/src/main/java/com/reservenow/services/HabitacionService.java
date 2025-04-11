@@ -60,8 +60,14 @@ habitacion.setCategoria(categoria);
         habitacion.setDescripcion(dto.getDescripcion());
         habitacion.setPrecioPorNoche(dto.getPrecioPorNoche());
         habitacion.setDisponible(dto.getDisponible());
+
+        Categoria categoria = categoriaRepository.findById(dto.getCategoriaId())
+            .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));
+
+        habitacion.setCategoria(categoria);
         return habitacionRepository.save(habitacion);
     }
+
     public boolean existePorId(Long id) {
         return habitacionRepository.existsById(id);
     }

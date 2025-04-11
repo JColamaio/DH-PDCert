@@ -42,16 +42,16 @@ public class HabitacionController {
     public ResponseEntity<List<Habitacion>> listarTodas() {
         return ResponseEntity.ok(habitacionService.listarTodas());
     }
-@PutMapping("/{id}")
-public ResponseEntity<?> actualizarHabitacion(@PathVariable Long id, @Valid @RequestBody HabitacionDTO dto) {
-    Optional<Habitacion> optional = habitacionService.obtenerPorId(id);
-    if (optional.isEmpty()) {
-        return ResponseEntity.notFound().build();
+    @PutMapping("/{id}")
+    public ResponseEntity<?> actualizarHabitacion(@PathVariable Long id, @RequestBody HabitacionDTO dto) {
+        if (!habitacionService.existePorId(id)) {
+            return ResponseEntity.notFound().build();
+        }
+    
+        Habitacion habitacion = habitacionService.obtenerPorId(id).get();
+        Habitacion actualizada = habitacionService.actualizarDesdeDTO(habitacion, dto);
+        return ResponseEntity.ok(actualizada);
     }
-
-    Habitacion actualizada = habitacionService.actualizarDesdeDTO(optional.get(), dto);
-    return ResponseEntity.ok(actualizada);
-}
 
 @DeleteMapping("/{id}")
 public ResponseEntity<?> eliminarHabitacion(@PathVariable Long id) {
@@ -72,6 +72,7 @@ public ResponseEntity<Habitacion> obtenerPorId(@PathVariable Long id) {
 public ResponseEntity<List<Habitacion>> listarAleatorias() {
     return ResponseEntity.ok(habitacionService.listarAleatorias(10));
 }
+
 
 
 }

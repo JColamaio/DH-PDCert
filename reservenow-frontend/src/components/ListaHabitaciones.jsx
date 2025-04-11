@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { FaTrashAlt } from 'react-icons/fa' // ícono
+import { Link } from 'react-router-dom'
 
 function ListaHabitaciones() {
   const [habitaciones, setHabitaciones] = useState([])
@@ -60,6 +61,13 @@ function ListaHabitaciones() {
                 <td>{h.id}</td>
                 <td className="fw-medium">{h.nombre}</td>
                 <td className="text-center">
+                <Link
+    to={`/administracion/editar-habitacion/${h.id}`}
+    className="btn btn-sm btn-outline-primary"
+    title="Editar habitación"
+  >
+    Editar
+  </Link>
                   <button
                     className="btn btn-sm btn-outline-danger"
                     title="Eliminar habitación"

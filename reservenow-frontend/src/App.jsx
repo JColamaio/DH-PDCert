@@ -8,6 +8,7 @@ import Footer from './components/Footer'
 import AdminLayout from './components/AdminLayout'
 import ListaHabitaciones from './components/ListaHabitaciones'
 import ListaUsuarios from './components/ListaUsuarios'
+import EditarHabitacion from './components/EditarHabitacion'
 import Login from './pages/Login'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -17,6 +18,7 @@ function App() {
   return (
     <>
       <Navbar />
+      <ToastContainer position="top-center" autoClose={3000} />
       <div className="container mt-4">
         <Routes>
           {/* Rutas públicas */}
@@ -30,10 +32,10 @@ function App() {
             <Route path="crear-habitacion" element={<CrearHabitacion />} />
             <Route path="lista-habitaciones" element={<ListaHabitaciones />} />
             <Route path="usuarios" element={<ListaUsuarios />} />
+            <Route path="editar-habitacion/:id" element={<EditarHabitacion />} />
           </Route>
         </Routes>
       </div>
-      <ToastContainer position="top-center" autoClose={3000} />
 
       <Footer />
     </>

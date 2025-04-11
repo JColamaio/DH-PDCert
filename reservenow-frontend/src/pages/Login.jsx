@@ -29,6 +29,7 @@ function Login() {
       localStorage.setItem('user', JSON.stringify(user))
       toast.success(`¡Bienvenido ${user.name}!`, {
         icon: '👋',
+        position: 'top-center',
       })
       
 
@@ -39,6 +40,10 @@ function Login() {
       }
     } catch (err) {
       setError(err.message)
+      toast.error('Email o contraseña incorrectos 😓', {
+        icon: '❌',
+        position: "top-center"
+      })
     }
   }
 
