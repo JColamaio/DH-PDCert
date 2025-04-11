@@ -1,6 +1,5 @@
-// src/components/DisponibilidadCalendario.jsx
 import { useEffect, useState } from 'react';
-import { addDays, format, isSameDay } from 'date-fns';
+import { addDays, format, isBefore, isSameDay } from 'date-fns';
 import { es } from 'date-fns/locale';
 
 function DisponibilidadCalendario({ habitacionId }) {
@@ -25,9 +24,15 @@ function DisponibilidadCalendario({ habitacionId }) {
       <div className="row g-2 mt-3">
         {dias.map(dia => {
           const ocupado = fechasOcupadas.some(f => isSameDay(f, dia));
+          const clase = isBefore(dia, hoy)
+            ? 'bg-secondary text-white opacity-50'
+            : ocupado
+            ? 'bg-danger text-white'
+            : 'bg-success text-white';
+
           return (
             <div key={dia.toISOString()} className="col-4 col-sm-2 text-center">
-              <div className={`p-2 border rounded ${ocupado ? 'bg-danger text-white' : 'bg-success text-white'}`}>
+              <div className={`p-2 border rounded ${clase}`}>
                 {format(dia, 'dd MMM', { locale: es })}
               </div>
             </div>

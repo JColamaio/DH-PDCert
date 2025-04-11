@@ -1,51 +1,93 @@
+/* Reset global básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background-color: #ffffff;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333333;
+  line-height: 1.6;
+  scroll-padding-top: 80px; /* para evitar que el navbar tape anclas */
+  padding-top: 70px; /* espacio para el navbar fijo */
 }
 
+/* Navbar */
 .navbar {
   background-color: #1e2a38 !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1050;
 }
 
 .navbar-brand,
 .nav-link {
   color: #ffffff !important;
   font-weight: 500;
+  transition: color 0.2s ease-in-out;
 }
 
+.nav-link:hover {
+  color: #a6d1ff !important;
+}
+
+/* Cards */
 .card {
   border-radius: 1rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   border: none;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card:hover {
   transform: scale(1.01);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
+/* Botones */
 .btn-primary {
   background-color: #0d6efd;
   border-color: #0d6efd;
   border-radius: 0.5rem;
   font-weight: 500;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .btn-primary:hover {
   background-color: #0b5ed7;
 }
 
-.container {
-  max-width: 960px;
-  margin-top: 2rem;
-}
-
+/* Formularios */
 .form-control {
   border-radius: 0.5rem;
   box-shadow: none !important;
 }
 
+/* Contenedor general */
+.container {
+  max-width: 1140px;
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+/* Tipografía */
 h1, h2 {
   font-weight: 600;
+}
+
+/* Espacio inferior del footer */
+.footer {
+  margin-top: 3rem;
+  background-color: #1e2a38;
+  padding: 1.5rem 0;
+  color: #ffffff;
+}
+
+/* Separador entre navbar y el contenido principal (opcional extra para seguridad) */
+.main-content {
+  padding-top: 1rem;
 }

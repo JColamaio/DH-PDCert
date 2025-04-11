@@ -8,12 +8,14 @@ import ListaHabitaciones from './components/ListaHabitaciones'
 import ListaUsuarios from './components/ListaUsuarios'
 import EditarHabitacion from './components/EditarHabitacion'
 import ResultadosBusqueda from './components/ResultadosBusqueda'
+import ReservaFormulario from './components/ReservaFormulario'
 import Habitaciones from './pages/Habitaciones'
 import RegistroUsuario from './pages/RegistroUsuario'
 import Login from './pages/Login'
+import HistorialReservas from './pages/HistorialReservas'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-
+import './App.css'
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
           <Route path="/habitaciones/:id" element={<DetalleHabitacion />} />
           <Route path="/login" element={<Login />} />
           <Route path="/buscar" element={<ResultadosBusqueda />} />
+          <Route path="/reservar/:id" element={<ReservaFormulario />} />
+          <Route path="/historial" element={<HistorialReservas />} />
 
 
           {/* Panel administrativo */}

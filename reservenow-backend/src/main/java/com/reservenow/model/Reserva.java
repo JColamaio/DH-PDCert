@@ -1,11 +1,14 @@
+// src/main/java/com/reservenow/model/Reserva.java
 package com.reservenow.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.time.LocalDate;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -23,6 +26,6 @@ public class Reserva {
     private Habitacion habitacion;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "usuario_id")
+    private User usuario;
 }

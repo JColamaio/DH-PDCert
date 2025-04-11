@@ -19,7 +19,7 @@ function Navbar() {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-3 fixed-top">
       <NavLink className="navbar-brand" to="/">ReserveNow</NavLink>
 
       <div className="collapse navbar-collapse">
@@ -48,6 +48,11 @@ function Navbar() {
               <li className="nav-item d-flex align-items-center text-white mx-2">
                 👤 {user.name} ({user.role})
               </li>
+              {user && (
+  <li className="nav-item">
+    <NavLink className="nav-link" to="/historial">Mis reservas</NavLink>
+  </li>
+)}
               <li className="nav-item">
                 <button className="btn btn-sm btn-outline-light ms-2" onClick={handleLogout}>
                   Cerrar sesión

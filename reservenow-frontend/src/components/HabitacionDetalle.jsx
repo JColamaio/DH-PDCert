@@ -23,6 +23,15 @@ function DetalleHabitacion() {
       .catch(err => setError(err.message))
   }, [id])
 
+  const handleReservaClick = () => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    if (!user) {
+      navigate('/login?redirect=habitaciones/' + id)
+    } else {
+      navigate(`/reservar/${id}`)
+    }
+  }
+
   if (error) {
     return <div className="container mt-4 alert alert-danger">{error}</div>
   }
@@ -68,10 +77,21 @@ function DetalleHabitacion() {
           </div>
         )}
 
-       {/* Mostrar calendario solo si hay habitacion cargada */}
-{habitacion && habitacion.id && (
-  <DisponibilidadCalendario habitacionId={habitacion.id} />
-)}
+        {/* Disponibilidad */}
+        <div className="mt-5">
+          <h4 className="fw-bold mb-3">Disponibilidad</h4>
+          <p>Verifica los días ocupados y disponibles en el calendario.</p>
+          {habitacion && habitacion.id && (
+            <DisponibilidadCalendario habitacionId={habitacion.id} />
+          )}
+        </div>
+
+        {/* Botón de Reservar */}
+        <div className="mt-4">
+          <button className="btn btn-success btn-lg" onClick={handleReservaClick}>
+            Reservar esta habitación
+          </button>
+        </div>
       </div>
     </div>
   )

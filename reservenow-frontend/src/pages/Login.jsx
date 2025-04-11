@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 function Login() {
@@ -7,6 +7,9 @@ function Login() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
   const navigate = useNavigate()
+  const location = useLocation()
+
+  const mensajeLogin = location.state?.mensaje || null
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -25,13 +28,11 @@ function Login() {
       }
 
       const user = await res.json()
-      console.log("Login exitoso:", user)
       localStorage.setItem('user', JSON.stringify(user))
       toast.success(`¡Bienvenido ${user.name}!`, {
         icon: '👋',
         position: 'top-center',
       })
-      
 
       if (user.role === 'ADMIN') {
         navigate('/administracion')
@@ -51,6 +52,7 @@ function Login() {
     <div className="container mt-5" style={{ maxWidth: '500px' }}>
       <h2 className="mb-4">Iniciar sesión</h2>
 
+      {mensajeLogin && <div className="alert alert-warning">{mensajeLogin}</div>}
       {error && <div className="alert alert-danger">{error}</div>}
 
       <form onSubmit={handleSubmit}>

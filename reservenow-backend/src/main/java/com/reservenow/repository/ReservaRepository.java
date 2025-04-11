@@ -15,4 +15,6 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long> {
 
     @Query("SELECT r FROM Reserva r WHERE r.habitacion.id = :habitacionId")
     List<Reserva> findByHabitacionId(Long habitacionId);
+    List<Reserva> findByUsuarioIdOrderByFechaInicioDesc(Long usuarioId);
+
 }

@@ -3,6 +3,7 @@ com/reservenow/model/Caracteristica$CaracteristicaBuilder.class
 com/reservenow/repository/CategoriaRepository.class
 com/reservenow/model/Reserva.class
 com/reservenow/repository/UserRepository.class
+com/reservenow/controller/ReservaController.class
 com/reservenow/model/Habitacion$HabitacionBuilder.class
 com/reservenow/services/HabitacionService.class
 com/reservenow/ReserveNowApplication.class
@@ -26,6 +27,7 @@ com/reservenow/repository/ReservaRepository.class
 com/reservenow/model/Caracteristica.class
 com/reservenow/services/ReservaService.class
 com/reservenow/dto/LoginRequest.class
+com/reservenow/dto/ReservaRequest.class
 com/reservenow/controller/UserController.class
 com/reservenow/model/User.class
 com/reservenow/dto/RegisterRequest.class
