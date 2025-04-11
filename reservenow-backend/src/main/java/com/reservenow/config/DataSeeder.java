@@ -26,37 +26,30 @@ public class DataSeeder implements CommandLineRunner {
             Categoria normal = categoriaRepository.save(new Categoria(null, "Normal", "Habitaciones estándar"));
             Categoria premium = categoriaRepository.save(new Categoria(null, "Premium", "Habitaciones premium"));
 
-            Caracteristica wifi = Caracteristica.builder().nombre("Wi-Fi gratis").icono("wifi").build();
-            Caracteristica tv = Caracteristica.builder().nombre("TV por cable").icono("tv").build();
-            Caracteristica aire = Caracteristica.builder().nombre("Aire acondicionado").icono("snow").build();
-            Caracteristica minibar = Caracteristica.builder().nombre("Minibar").icono("wine").build();
-            Caracteristica jacuzzi = Caracteristica.builder().nombre("Jacuzzi").icono("droplet").build();
-            Caracteristica vista = Caracteristica.builder().nombre("Vista panorámica").icono("mountain").build();
-
             List<Habitacion> habitaciones = List.of(
                 crearHabitacion("Simple Base", "Habitación para 1 persona", 45.0, true, normal,
                     List.of("https://hotelverdesole.com.ar/wp-content/uploads/2019/11/WhatsApp-Image-2019-11-08-at-15.38.311.jpeg"),
-                    List.of(wifi, tv)),
+                    List.of(wifi(), tv())),
 
                 crearHabitacion("Doble Standard", "Para 2 personas, buena vista", 75.0, true, normal,
                     List.of("https://hotelverdesole.com.ar/wp-content/uploads/2019/11/WhatsApp-Image-2019-11-08-at-15.38.281.jpeg"),
-                    List.of(wifi, tv, aire)),
+                    List.of(wifi(), tv(), aire())),
 
                 crearHabitacion("Triple Premium", "Espaciosa y equipada para 3 personas", 120.0, true, premium,
                     List.of("https://hotelverdesole.com.ar/wp-content/uploads/2019/11/WhatsApp-Image-2019-11-08-at-15.38.28.jpeg"),
-                    List.of(wifi, tv, aire, minibar)),
+                    List.of(wifi(), tv(), aire(), minibar())),
 
                 crearHabitacion("Cuádruple Familiar", "Perfecta para familias", 150.0, true, premium,
                     List.of("https://hotelverdesole.com.ar/wp-content/uploads/2019/11/WhatsApp-Image-2019-11-08-at-15.38.283.jpeg"),
-                    List.of(wifi, tv, aire, minibar, vista)),
+                    List.of(wifi(), tv(), aire(), minibar(), vista())),
 
                 crearHabitacion("Suite Ejecutiva", "Ideal para negocios", 200.0, true, premium,
                     List.of("https://hotelverdesole.com.ar/wp-content/uploads/2019/11/WhatsApp-Image-2019-11-08-at-15.38.27.jpeg"),
-                    List.of(wifi, tv, aire, minibar, jacuzzi, vista)),
+                    List.of(wifi(), tv(), aire(), minibar(), jacuzzi(), vista())),
 
                 crearHabitacion("Suite Presidencial", "Máximo lujo y confort", 350.0, true, premium,
                     List.of("https://hotelverdesole.com.ar/wp-content/uploads/2019/11/WhatsApp-Image-2019-11-08-at-15.38.33.jpeg"),
-                    List.of(wifi, tv, aire, minibar, jacuzzi, vista))
+                    List.of(wifi(), tv(), aire(), minibar(), jacuzzi(), vista()))
             );
 
             habitacionRepository.saveAll(habitaciones);
@@ -91,5 +84,30 @@ public class DataSeeder implements CommandLineRunner {
         habitacion.setImagenes(imagenes);
         habitacion.setCaracteristicas(caracteristicas);
         return habitacion;
+    }
+
+    // Métodos para crear nuevas instancias de características
+    private Caracteristica wifi() {
+        return Caracteristica.builder().nombre("Wi-Fi gratis").icono("wifi").build();
+    }
+
+    private Caracteristica tv() {
+        return Caracteristica.builder().nombre("TV por cable").icono("tv").build();
+    }
+
+    private Caracteristica aire() {
+        return Caracteristica.builder().nombre("Aire acondicionado").icono("snow").build();
+    }
+
+    private Caracteristica minibar() {
+        return Caracteristica.builder().nombre("Minibar").icono("wine").build();
+    }
+
+    private Caracteristica jacuzzi() {
+        return Caracteristica.builder().nombre("Jacuzzi").icono("droplet").build();
+    }
+
+    private Caracteristica vista() {
+        return Caracteristica.builder().nombre("Vista panorámica").icono("mountain").build();
     }
 }
