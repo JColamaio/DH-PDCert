@@ -1,7 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import RegistroUsuario from './pages/RegistroUsuario'
-import Habitaciones from './pages/Habitaciones'
 import CrearHabitacion from './components/CrearHabitacion'
 import DetalleHabitacion from './components/HabitacionDetalle'
 import Footer from './components/Footer'
@@ -9,6 +7,9 @@ import AdminLayout from './components/AdminLayout'
 import ListaHabitaciones from './components/ListaHabitaciones'
 import ListaUsuarios from './components/ListaUsuarios'
 import EditarHabitacion from './components/EditarHabitacion'
+import ResultadosBusqueda from './components/ResultadosBusqueda'
+import Habitaciones from './pages/Habitaciones'
+import RegistroUsuario from './pages/RegistroUsuario'
 import Login from './pages/Login'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -26,6 +27,8 @@ function App() {
           <Route path="/register" element={<RegistroUsuario />} />
           <Route path="/habitaciones/:id" element={<DetalleHabitacion />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/buscar" element={<ResultadosBusqueda />} />
+
 
           {/* Panel administrativo */}
           <Route path="/administracion" element={<AdminLayout />}>

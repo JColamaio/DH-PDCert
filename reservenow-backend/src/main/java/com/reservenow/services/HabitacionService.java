@@ -7,10 +7,16 @@ import com.reservenow.model.Imagen;
 import com.reservenow.repository.CategoriaRepository;
 import com.reservenow.repository.HabitacionRepository;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Collections;
 
 @Service
@@ -18,10 +24,20 @@ import java.util.Collections;
 public class HabitacionService {
 
     private final HabitacionRepository habitacionRepository;
-private final CategoriaRepository categoriaRepository;
+    private final CategoriaRepository categoriaRepository;
+    private final ReservaService reservaService;
 
     public boolean existePorNombre(String nombre) {
         return habitacionRepository.existsByNombre(nombre);
+    }
+    
+    
+    public List<Habitacion> buscarDisponiblesEntre(LocalDate desde, LocalDate hasta) {
+        List<Long> ocupadas = reservaService.obtenerIdsHabitacionesOcupadas(desde, hasta);
+        if (ocupadas.isEmpty()) {
+            return habitacionRepository.findAll(); // Ninguna ocupada
+        }
+        return habitacionRepository.findByIdNotIn(ocupadas);
     }
 
     public Habitacion crearDesdeDTO(HabitacionDTO dto) {
@@ -81,6 +97,23 @@ habitacion.setCategoria(categoria);
         Collections.shuffle(todas);
         return todas.stream().limit(cantidad).toList();
     }
+    public List<Habitacion> buscarDisponibles(String desdeStr, String hastaStr) {
+    try {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate desde = LocalDate.parse(desdeStr, formatter);
+        LocalDate hasta = LocalDate.parse(hastaStr, formatter);
+
+        // Aquí deberíamos tener lógica con reservas reales
+        // De momento, devolvemos todas disponibles como placeholder
+        return habitacionRepository.findAll().stream()
+                .filter(Habitacion::getDisponible) // filtramos solo disponibles
+                .toList();
+
+    } catch (DateTimeParseException e) {
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Formato de fecha inválido");
+    }
+}
+
     
     
 }

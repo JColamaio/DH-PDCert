@@ -3,11 +3,15 @@ package com.reservenow.services;
 import com.reservenow.dto.HabitacionDTO;
 import com.reservenow.model.Categoria;
 import com.reservenow.model.Habitacion;
+import com.reservenow.model.Imagen;
 import com.reservenow.repository.CategoriaRepository;
 import com.reservenow.repository.HabitacionRepository;
+
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,7 +21,8 @@ public class HabitacionServiceTest {
 
     private final HabitacionRepository habitacionRepository = mock(HabitacionRepository.class);
     private final CategoriaRepository categoriaRepository = mock(CategoriaRepository.class);
-    private final HabitacionService habitacionService = new HabitacionService(habitacionRepository, categoriaRepository);
+    private final ReservaService reservaService = mock(ReservaService.class);
+    private final HabitacionService habitacionService = new HabitacionService(habitacionRepository, categoriaRepository, reservaService);
 
     @Test
     public void testExistePorNombre() {
@@ -55,5 +60,23 @@ public class HabitacionServiceTest {
         assertEquals("Premium", habitacion.getCategoria().getNombre());
         verify(habitacionRepository, times(1)).save(any(Habitacion.class));
         verify(categoriaRepository, times(1)).findById(1L);
+    }
+
+    @Test
+    public void testBuscarDisponiblesEntre() {
+        LocalDate desde = LocalDate.now();
+        LocalDate hasta = desde.plusDays(3);
+
+        List<Long> idsOcupadas = List.of(1L, 2L);
+        when(reservaService.obtenerIdsHabitacionesOcupadas(desde, hasta)).thenReturn(idsOcupadas);
+
+        List<Habitacion> habitacionesDisponibles = List.of(new Habitacion(), new Habitacion());
+        when(habitacionRepository.findByIdNotIn(idsOcupadas)).thenReturn(habitacionesDisponibles);
+
+        List<Habitacion> resultado = habitacionService.buscarDisponiblesEntre(desde, hasta);
+
+        assertEquals(2, resultado.size());
+        verify(reservaService, times(1)).obtenerIdsHabitacionesOcupadas(desde, hasta);
+        verify(habitacionRepository, times(1)).findByIdNotIn(idsOcupadas);
     }
 }

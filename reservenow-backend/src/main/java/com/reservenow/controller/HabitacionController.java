@@ -1,12 +1,16 @@
 
 package com.reservenow.controller;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
+
+import java.time.LocalDate;
 import java.util.List;
 
 import com.reservenow.services.HabitacionService;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -72,6 +76,23 @@ public ResponseEntity<Habitacion> obtenerPorId(@PathVariable Long id) {
 public ResponseEntity<List<Habitacion>> listarAleatorias() {
     return ResponseEntity.ok(habitacionService.listarAleatorias(10));
 }
+@GetMapping("/buscar")
+public ResponseEntity<List<Habitacion>> buscarDisponibles(
+        @RequestParam("desde") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate desde,
+        @RequestParam("hasta") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate hasta) {
+
+    List<Habitacion> disponibles = habitacionService.buscarDisponiblesEntre(desde, hasta);
+    return ResponseEntity.ok(disponibles);
+}
+@GetMapping("/disponibles")
+public ResponseEntity<List<Habitacion>> buscarDisponibles(
+        @RequestParam String desde,
+        @RequestParam String hasta
+) {
+    List<Habitacion> disponibles = habitacionService.buscarDisponibles(desde, hasta);
+    return ResponseEntity.ok(disponibles);
+}
+
 
 
 

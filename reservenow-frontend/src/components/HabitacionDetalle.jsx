@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import GaleriaImagenes from './GaleriaImagenes'
+import DisponibilidadCalendario from './DisponibilidadCalendario'
 
 function DetalleHabitacion() {
   const { id } = useParams()
@@ -52,7 +53,7 @@ function DetalleHabitacion() {
         {/* Galería de imágenes */}
         <GaleriaImagenes imagenes={habitacion.imagenes?.map(img => img.url)} />
 
-        {/* Bloque de Características */}
+        {/* Características */}
         {habitacion.caracteristicas?.length > 0 && (
           <div className="mt-5">
             <h4 className="fw-bold mb-3">Características</h4>
@@ -66,6 +67,11 @@ function DetalleHabitacion() {
             </div>
           </div>
         )}
+
+       {/* Mostrar calendario solo si hay habitacion cargada */}
+{habitacion && habitacion.id && (
+  <DisponibilidadCalendario habitacionId={habitacion.id} />
+)}
       </div>
     </div>
   )
