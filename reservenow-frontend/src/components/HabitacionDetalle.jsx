@@ -51,6 +51,21 @@ function DetalleHabitacion() {
 
         {/* Galería de imágenes */}
         <GaleriaImagenes imagenes={habitacion.imagenes?.map(img => img.url)} />
+
+        {/* Bloque de Características */}
+        {habitacion.caracteristicas?.length > 0 && (
+          <div className="mt-5">
+            <h4 className="fw-bold mb-3">Características</h4>
+            <div className="row">
+              {habitacion.caracteristicas.map(c => (
+                <div key={c.id} className="col-md-4 mb-3 d-flex align-items-center">
+                  <i className={`bi bi-${c.icono} me-2`} style={{ fontSize: '1.5rem' }}></i>
+                  <span>{c.nombre}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )

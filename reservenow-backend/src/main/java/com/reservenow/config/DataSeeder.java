@@ -1,10 +1,6 @@
 package com.reservenow.config;
 
-import com.reservenow.model.Categoria;
-import com.reservenow.model.Habitacion;
-import com.reservenow.model.Imagen;
-import com.reservenow.model.Role;
-import com.reservenow.model.User;
+import com.reservenow.model.*;
 import com.reservenow.repository.CategoriaRepository;
 import com.reservenow.repository.HabitacionRepository;
 import com.reservenow.repository.UserRepository;
@@ -30,11 +26,37 @@ public class DataSeeder implements CommandLineRunner {
             Categoria normal = categoriaRepository.save(new Categoria(null, "Normal", "Habitaciones estándar"));
             Categoria premium = categoriaRepository.save(new Categoria(null, "Premium", "Habitaciones premium"));
 
+            Caracteristica wifi = Caracteristica.builder().nombre("Wi-Fi gratis").icono("wifi").build();
+            Caracteristica tv = Caracteristica.builder().nombre("TV por cable").icono("tv").build();
+            Caracteristica aire = Caracteristica.builder().nombre("Aire acondicionado").icono("snow").build();
+            Caracteristica minibar = Caracteristica.builder().nombre("Minibar").icono("wine").build();
+            Caracteristica jacuzzi = Caracteristica.builder().nombre("Jacuzzi").icono("droplet").build();
+            Caracteristica vista = Caracteristica.builder().nombre("Vista panorámica").icono("mountain").build();
+
             List<Habitacion> habitaciones = List.of(
                 crearHabitacion("Simple Base", "Habitación para 1 persona", 45.0, true, normal,
-                    List.of("https://hotelverdesole.com.ar/wp-content/uploads/2019/11/WhatsApp-Image-2019-11-08-at-15.38.311.jpeg")),
+                    List.of("https://hotelverdesole.com.ar/wp-content/uploads/2019/11/WhatsApp-Image-2019-11-08-at-15.38.311.jpeg"),
+                    List.of(wifi, tv)),
+
+                crearHabitacion("Doble Standard", "Para 2 personas, buena vista", 75.0, true, normal,
+                    List.of("https://hotelverdesole.com.ar/wp-content/uploads/2019/11/WhatsApp-Image-2019-11-08-at-15.38.281.jpeg"),
+                    List.of(wifi, tv, aire)),
+
+                crearHabitacion("Triple Premium", "Espaciosa y equipada para 3 personas", 120.0, true, premium,
+                    List.of("https://hotelverdesole.com.ar/wp-content/uploads/2019/11/WhatsApp-Image-2019-11-08-at-15.38.28.jpeg"),
+                    List.of(wifi, tv, aire, minibar)),
+
+                crearHabitacion("Cuádruple Familiar", "Perfecta para familias", 150.0, true, premium,
+                    List.of("https://hotelverdesole.com.ar/wp-content/uploads/2019/11/WhatsApp-Image-2019-11-08-at-15.38.283.jpeg"),
+                    List.of(wifi, tv, aire, minibar, vista)),
+
                 crearHabitacion("Suite Ejecutiva", "Ideal para negocios", 200.0, true, premium,
-                    List.of("https://hotelverdesole.com.ar/wp-content/uploads/2019/11/WhatsApp-Image-2019-11-08-at-15.38.27.jpeg"))
+                    List.of("https://hotelverdesole.com.ar/wp-content/uploads/2019/11/WhatsApp-Image-2019-11-08-at-15.38.27.jpeg"),
+                    List.of(wifi, tv, aire, minibar, jacuzzi, vista)),
+
+                crearHabitacion("Suite Presidencial", "Máximo lujo y confort", 350.0, true, premium,
+                    List.of("https://hotelverdesole.com.ar/wp-content/uploads/2019/11/WhatsApp-Image-2019-11-08-at-15.38.33.jpeg"),
+                    List.of(wifi, tv, aire, minibar, jacuzzi, vista))
             );
 
             habitacionRepository.saveAll(habitaciones);
@@ -51,7 +73,7 @@ public class DataSeeder implements CommandLineRunner {
         }
     }
 
-    private Habitacion crearHabitacion(String nombre, String descripcion, Double precio, Boolean disponible, Categoria categoria, List<String> urls) {
+    private Habitacion crearHabitacion(String nombre, String descripcion, Double precio, Boolean disponible, Categoria categoria, List<String> urls, List<Caracteristica> caracteristicas) {
         Habitacion habitacion = Habitacion.builder()
             .nombre(nombre)
             .descripcion(descripcion)
@@ -64,7 +86,10 @@ public class DataSeeder implements CommandLineRunner {
             .map(url -> Imagen.builder().url(url).habitacion(habitacion).build())
             .toList();
 
+        caracteristicas.forEach(c -> c.setHabitacion(habitacion));
+
         habitacion.setImagenes(imagenes);
+        habitacion.setCaracteristicas(caracteristicas);
         return habitacion;
     }
 }

@@ -79,16 +79,22 @@ function CrearHabitacion() {
         <div className="mb-3">
           <label className="form-label">Nombre</label>
           <input type="text" className={`form-control ${validacion.nombre ? 'is-invalid' : ''}`} value={nombre} onChange={e => setNombre(e.target.value)} />
+          {validacion.nombre && <div className="text-danger">El nombre es obligatorio</div>}
+
         </div>
 
         <div className="mb-3">
           <label className="form-label">Descripción</label>
           <textarea className={`form-control ${validacion.descripcion ? 'is-invalid' : ''}`} value={descripcion} onChange={e => setDescripcion(e.target.value)} />
+          {validacion.descripcion && <div className="text-danger">La descripción es obligatoria</div>}
+
         </div>
 
         <div className="mb-3">
           <label className="form-label">Precio por noche</label>
           <input type="number" className={`form-control ${validacion.precio ? 'is-invalid' : ''}`} value={precio} onChange={e => setPrecio(e.target.value)} />
+          {validacion.precio && <div className="text-danger">El precio debe ser un número válido mayor a 0</div>}
+
         </div>
 
         <div className="mb-3">
@@ -116,6 +122,8 @@ function CrearHabitacion() {
       <option key={cat.id} value={cat.id}>{cat.nombre}</option>
     ))}
   </select>
+  {validacion.categoriaId && <div className="text-danger">Debes seleccionar una categoría</div>}
+
 </div>
 
         <button type="submit" className="btn btn-primary" disabled={loading}>
