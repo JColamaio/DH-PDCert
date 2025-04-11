@@ -1,4 +1,5 @@
 com/reservenow/config/AppConfig.class
+com/reservenow/model/Caracteristica$CaracteristicaBuilder.class
 com/reservenow/repository/CategoriaRepository.class
 com/reservenow/repository/UserRepository.class
 com/reservenow/model/Habitacion$HabitacionBuilder.class
@@ -17,7 +18,9 @@ com/reservenow/model/Categoria$CategoriaBuilder.class
 com/reservenow/model/Categoria.class
 com/reservenow/model/Imagen$ImagenBuilder.class
 com/reservenow/config/CorsConfig.class
+com/reservenow/repository/CaracteristicaRepository.class
 com/reservenow/controller/CategoriaController.class
+com/reservenow/model/Caracteristica.class
 com/reservenow/dto/LoginRequest.class
 com/reservenow/controller/UserController.class
 com/reservenow/model/User.class
